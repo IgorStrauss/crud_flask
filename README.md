@@ -24,7 +24,7 @@ Operação de exclusão do objeto no banco de dados
 Clone o projeto
 
 ```bash
-  git clone https://link-para-o-projeto
+  https://github.com/IgorStrauss/crud_flask.git
 ```
 ---
 Entre no diretório do projeto
