@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block title %}
+<title>Perfil Usuário - MarquesIgor</title>
+{% endblock title %} {% block content %}
+<h1 class="text-center font-weight-bold mt-2">PERFIL DE {{ user.Firstname }} {{ user.Lastname }}</h1>
+
+<section>
+  <form>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Nome</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formGroupExampleInput"
+        value="{{ user.Firstname }}"
+        readonly
+      />
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Sobrenome</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formGroupExampleInput"
+        value="{{ user.Lastname }}"
+        readonly
+      />
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="formGroupExampleInput"
+        value="{{ user.Email }}"
+        readonly
+      />
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="formGroupExampleInput">Celular</label>
+        <input
+          type="text"
+          class="form-control"
+          id="formGroupExampleInput"
+          value="{{ user.Phone_user.Format_Cellphone }}"
+          readonly
+        />
+      </div>
+      <hr>
+      <a class="btn btn-primary" href="{{ url_for('home') }}">Voltar para Home</a>
+  
+  </form>
+</section>
+
+{% endblock content %}

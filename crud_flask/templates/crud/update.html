@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block title %}
+<title>Editar Cadastro Usuário - MarquesIgor</title>
+{% endblock title %} {% block content %}
+<h1 class="text-center font-weight-bold mt-2">
+  EDITAR DADOS DE {{ user.Firstname }} {{ user.Lastname }}
+</h1>
+<section>{% include "partials/_messages.html" %}</section>
+
+<form
+  action="{{ url_for('editar_user', user_id=user.Id) }}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  {{ form.hidden_tag() }}
+  <!--Firstname-->
+  <div class="form-group">
+    {{ form.Firstname.label(class="form-control-label") }}
+    <input
+      type="text"
+      name="Firstname"
+      class="form-control"
+      value="{{ user.Firstname }}"
+      autocomplete="off"
+    />
+  </div>
+
+  <!--Lastname-->
+  <div class="form-group">
+    {{ form.Lastname.label(class="form-control-label") }}
+    <input
+      type="text"
+      name="Lastname"
+      class="form-control"
+      value="{{ user.Lastname }}"
+      autocomplete="off"
+    />
+  </div>
+  <!--Email-->
+  <div class="form-group">
+    {{ form.Email.label(class="form-control-label") }}
+    <input
+      type="email"
+      name="Email"
+      class="form-control"
+      value="{{ user.Email }}"
+      autocomplete="off"
+    />
+  </div>
+  <!--Phone-->
+  <div class="form-group">
+    {{ form.Phone.label(class="form-control-label") }}
+    <input
+      type="text"
+      name="Phone"
+      class="form-control"
+      value="{{ user.Phone_user }}"
+      autocomplete="off"
+    />
+  </div>
+  <!--Submit-->
+  <div class="form-group">
+    {{ form.Submit(class="btn btn-success") }}
+    <a class="btn btn-primary" href="{{ url_for('home') }}">Voltar para Home</a>
+  </div>
+</form>
+{% endblock content %}

@@ -1,0 +1,19 @@
+# Configuração Dynaconf
+
+[default]
+SECRET_KEY = "SECRET_KEY"
+SQLALCHEMY_TRACK_MODIFICATIONS = false
+
+
+[development]
+FLASK_ENV = "development"
+INCLUDES = ["default"]
+TEMPLATES_AUTO_RELOAD = true
+DEBUG = true
+SQLALCHEMY_DATABASE_URI = 'sqlite:///db.development.sqlite'
+
+[testing]
+FLASK_ENV = "testing"
+INCLUDES = ["default"]
+SQLALCHEMY_DATABASE_URI = "sqlite:///db.testing.sqlite"
+DEBUG = true

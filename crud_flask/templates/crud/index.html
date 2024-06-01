@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% include "partials/_navbar.html" %} {% block content
+%}
+<section>{% include "partials/_messages.html" %}</section>
+
+<section>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Sobrenome</th>
+        <th scope="col">Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if not itens_on_page %}
+      <h3>Nenhum usuário cadastrado!</h3>
+      {% else %} {% for user in itens_on_page %}
+      <tr>
+        <th scope="row">{{ user.Id }}</th>
+        <td>{{ user.Firstname }}</td>
+        <td>{{ user.Lastname }}</td>
+        <td>{{ user.Email }}</td>
+        <td>
+          <a
+            class="btn btn-info"
+            href="{{ url_for('perfil_user', user_id=user.Id) }}"
+          >
+            Informações
+          </a>
+
+          <!--Update-->
+          <a
+            class="btn btn-warning"
+            href="{{ url_for('editar_user', user_id=user.Id) }}"
+          >
+            Editar
+          </a>
+
+          <!--Delete-->
+          <a
+            class="btn btn-danger"
+            href="{{ url_for('deletar_user', user_id=user.Id) }}"
+            onclick="return confirm('Deseja realmente excluir este usuário?')"
+          >
+            Excluir
+          </a>
+        </td>
+      </tr>
+      {% endfor %} {% endif %}
+
+      <!--Pagination-->
+      <section>
+        <nav aria-label="...">
+          <ul class="pagination mt-2">
+            {% if page > 1 %}
+            <li class="page-item">
+              <a class="page-link" href="{{ url_for('home', page=page-1) }}"
+                >&laquo;</a
+              >
+              {% endif %}
+            </li>
+            <li class="page-item" aria-current="page">
+              <a class="page-link" href="#"
+                >Página {{ page }} de {{ total_pages }}</a
+              >
+            </li>
+            <li class="page-item">
+              {% if page < total_pages %}
+              <a class="page-link" href="{{ url_for('home', page=page+1) }}"
+                >&raquo;</a
+              >
+              {% endif %}
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </tbody>
+  </table>
+</section>
+{% endblock content %}

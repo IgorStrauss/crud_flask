@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %}
+<title>Cadastrar usuário - MarquesIgor</title>
+{% endblock title %} {% block content %}
+<h1>MarquesIgor</h1>
+<section>{% include "partials/_messages.html" %}</section>
+<form
+  action="{{ url_for('cadastrar') }}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  {{ form.hidden_tag() }}
+  <!--Firstname-->
+  <div class="form-group">
+    {{ form.Firstname.label(class="form-control-label") }} {{
+    form.Firstname(class="form-control", autocomplete="off") }}
+  </div>
+  <!--Lastname-->
+  <div class="form-group">
+    {{ form.Lastname.label(class="form-control-label") }} {{
+    form.Lastname(class="form-control", autocomplete="off") }}
+  </div>
+  <!--Email-->
+  <div class="form-group">
+    {{ form.Email.label(class="form-control-label") }} {{
+    form.Email(class="form-control", autocomplete="off") }}
+  </div>
+  <!--Phone-->
+  <div class="form-group">
+    {{ form.Phone.label(class="form-control-label") }} {{
+    form.Phone(class="form-control", autocomplete="off", pattern="\d{11}") }}
+  </div>
+  <!--Submit-->
+  <div class="form-group">{{ form.Submit(class="btn btn-primary") }}</div>
+</form>
+{% endblock content %}
